@@ -1,0 +1,10 @@
+Package: GOprouning
+Type: Package
+Title: GOprouning
+Version: 0.1.0
+Author: Mattheus Rodrigo Marzola Leite
+Maintainer: Mattheus Rodrigo Marzola Leite <mattheusrml@gmail.com>
+Description: This package is used to prouning data from Gene Ontology hierarchy
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
