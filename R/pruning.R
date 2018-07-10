@@ -6,7 +6,7 @@
 #' @param ontology the ontology of GO. select one of this tree options: BP, MF or CC (Biological Process, Molecular Function or Cellular Component)
 #' @param interactionType the relations between terms, default is 'is_a'
 #'
-#' @return a list of the hierarchy pruned
+#' @return GO hierarchy with rootTerm at the highest level
 #'
 #' @examples getHierarchyByTerm(rootTerm = 'GO:0008501', ontology = 'BP')
 #'
@@ -79,5 +79,29 @@ getHierarchy <- function(hierarchy = NA, initialHierarchy = NA, allTerms = NA, i
 
   return(hierarchy)
 
+}
+
+#filter terms on hierarchy with genes associations
+#remove term with no children
+#remove genes with no terms associations
+#' @title filterTermByGenes
+#'
+#' @description function that prunes the hierarchy of the ontology gene according to the annotation of the past genes.  removing terms without annotated genes and genes that are not annotated in any term present in the hierarchy.
+#'
+#' @param terms the terms hierarchy, the result of getHierarchyByTerm
+#' @param genes list of genes with their terms
+#'
+#' @returna list named by the terms and their respective genes
+#'
+#' @export getHierarchyByTerm
+filterTermByGenes  <- function(terms = NA, genes = NA){
+
+  listGene2GO <- list()
+  termsVector <- unname(unlist(terms))
+  termsVector <- c(names(terms)[1], termsVector)
+  #tst <- stack(genes)
+
+  listGene2GO <- genes[(names(genes) %in% termsVector)]
+  return(listGene2GO)
 }
 
